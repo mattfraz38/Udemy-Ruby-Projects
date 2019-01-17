@@ -1,5 +1,5 @@
 def target_number(num)
-  x = rand(0..20)
+   x = rand(0..20)
   num.times do |x|
     if x % 13 == 0
       puts "#{x} / 13 = #{x / 13}!"
