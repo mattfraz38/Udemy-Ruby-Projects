@@ -38,7 +38,7 @@ puts "Simple Calculator"
 puts
 puts "Choose an operation: + - * / %"
 operator = gets.chomp
-puts "Choose a fist number to \"#{operator}\":"
+puts "Choose a first number to \"#{operator}\":"
 num_one = gets.chomp.to_i.to_f
 puts "Choose a second number to \"#{operator}\":"
 num_two = gets.chomp.to_i.to_f
