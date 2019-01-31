@@ -8,4 +8,7 @@ while user_input != ""
   last_name = gets.chomp
   puts "Cool name #{first_name} #{last_name}!!"
   puts "-" * 30
+  puts "Try again? y/n"
+  input = gets.chomp
+  break if input == "y"
 end
