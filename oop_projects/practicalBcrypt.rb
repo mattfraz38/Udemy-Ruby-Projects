@@ -5,9 +5,13 @@ def create_hash_digest(password)
   BCrypt::Password.create(password)
 end
 
-# def verify_hash_digest(password)
-#   BCrypt::Password.new(password)
-# end
+def verify_hash_digest(password)
+  BCrypt::Password.new(password)
+end
+
+def authenticate_password(password)
+  verify_hash_digest(password)
+end
 
 loop do
   puts "Do you want to enter a password? y/n: "
@@ -21,9 +25,8 @@ loop do
     verified_password = create_hash_digest(STDIN.noecho(&:gets).chomp)
     puts
     puts verified_password
-    if my_password == verified_password
+    if authenticate_password(my_password) == authenticate_password(verified_password)
       puts
-      puts my_password
       puts "Yay! Your password matches!"
     else
       puts "Boo! You got it wrong!"
