@@ -1,38 +1,39 @@
-# class User
+module Crud
   require 'bcrypt'
+  puts "module Crud activated"
   # attr_accessor :password
 
   # def Initialize(password)
   #   @password = password
   # end
 
-  users = [
-    { username: "mfraz",    password: "password1" },
-    { username: "kimfraz",  password: "password2" },
-    { username: "kelfraz",  password: "password3" },
-    { username: "jfraz",    password: "password4" },
-    { username: "silksaki", password: "password5" }
-  ]
+  # users = [
+  #   { username: "mfraz",    password: "password1" },
+  #   { username: "kimfraz",  password: "password2" },
+  #   { username: "kelfraz",  password: "password3" },
+  #   { username: "jfraz",    password: "password4" },
+  #   { username: "silksaki", password: "password5" }
+  # ]
 
-  def create_hash_digest(password)
+  def self.create_hash_digest(password)
     BCrypt::Password.create(password)
   end
 # This is not being used
-  def verify_hash_digest(password)
+  def self.verify_hash_digest(password)
     BCrypt::Password.new(password)
   end
 
-  def create_secure_users(list_of_users)
+  def self.create_secure_users(list_of_users)
     list_of_users.each do |user_record|
       user_record[:password] = create_hash_digest(user_record[:password])
     end
     list_of_users
   end
 
-  new_users = create_secure_users(users)
-  puts new_users
+  # new_users = create_secure_users(users)
+  # puts new_users
 
-  def authenticate_user(username, password, list_of_users)
+  def self.authenticate_user(username, password, list_of_users)
     list_of_users.each do |user_record|
       if user_record[:username] == username && verify_hash_digest(user_record[:password]) == password
         puts "Valid credentials"
@@ -42,12 +43,12 @@
     "Incorrect credentials"
   end
 
-# end
+end
 
 new_password = create_hash_digest("password1")
 # puts new_password == "password1"
 
-puts authenticate_user("mfraz", "password1", new_users)
+# puts authenticate_user("mfraz", "password1", new_users)
 # YOU NEED TO PUT THE PASSWORD INTO AN ARRAY!!
 # Don't veryify and hash in the same line
 # if statement comparing user imput to hashed array
